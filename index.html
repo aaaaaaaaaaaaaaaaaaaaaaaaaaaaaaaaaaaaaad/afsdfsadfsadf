@@ -6,7 +6,8 @@
         @font-face {font-family: Times New Roman; src: url(timesbd.tff);}
     </style>
 </head>
-<body>
+<body style="background-color: #f0eded;background-image: url(blizzard.png);">
+   <div align="center"style="padding-top: 50px;margin: auto; width: 600px;">
     <form>
      Name: <br><input id="iname" type="text" name="nname1"><br><br>
      Title: <br><input id="ntitle" type="text" name="ntitle1"><br><br>
@@ -19,11 +20,17 @@
  <br> <br> <div style="border-style: solid; border-width: 5px; background-image: url(bg.png); width: 600px; height: 185px;">
     <canvas id="canvas" width="600" height="185" style="text-align: center;"></canvas>
     </div>
+    <div style="width: 560px; height: 315px; padding: 25px; padding-top: 100px; position: absolute;">
+    	<iframe width="560" height="315" src="https://www.youtube.com/embed/uRf3EMSb8oI" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    </div>
+</div>
     <script>
         var cVas = document.getElementById('canvas');
         var cuntext = cVas.getContext('2d');
         var whiteBg = new Image(600, 185);
         var theImg = new Image(600, 185);
+        document.getElementById("bTn4").disabled = true;
         // var dummyImg = new Image(600, 185);
 
         function LImg() {
@@ -31,11 +38,14 @@
             cuntext.drawImage(theImg, 0, 0);
             cuntext.fillStyle = '#000';
             cuntext.textAlign = "center"; 
-            cuntext.font = 'bold 17px Times New Roman';  
-            cuntext.fillText(document.getElementById('iname').value, 72, 115);
+            cuntext.font = 'bold 17px Times New Roman';
+            var ctext = document.getElementById('iname').value.split("").join(String.fromCharCode(8202));
+            cuntext.fillText(/*document.getElementById('iname').value*/ctext, 120, 114);
             cuntext.textAlign = "center"; 
             cuntext.font = '12px Calibri';
-            cuntext.fillText(document.getElementById('ntitle').value, 72, 128);
+            cuntext.fillText(document.getElementById('ntitle').value, 120, 128);
+	    document.getElementById("bTn4").disabled = false;	    
+
         };
         function WLImg() {
             cuntext.clearRect(0, 0, canvas.width, canvas.height);
@@ -44,10 +54,13 @@
             cuntext.fillStyle = '#000';
             cuntext.textAlign = "center"; 
             cuntext.font = 'bold 17px Times New Roman';
-            cuntext.fillText(document.getElementById('iname').value, 72, 115);
+            var ctext = document.getElementById('iname').value.split("").join(String.fromCharCode(8202));
+            cuntext.fillText(/*document.getElementById('iname').value*/ctext, 120, 114);
             cuntext.textAlign = "center"; 
             cuntext.font = '12px Calibri';
-            cuntext.fillText(document.getElementById('ntitle').value, 72, 128);
+            cuntext.fillText(document.getElementById('ntitle').value, 120, 128);
+	    document.getElementById("bTn4").disabled = false;	    
+
         };
         function rVal() {document.getElementById('iname').value = ""; document.getElementById('ntitle').value = "";} 
 
@@ -69,11 +82,11 @@
 		    	}
 		    });
 		
-
         theImg.src = 'tempL.png';
         whiteBg.src = 'whiteBack.png'; 
         // dummyImg.src = 'dummo2.png';
 
     </script>
+    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </body>
 </html>
