@@ -63,7 +63,7 @@
 
 		    	        document.body.appendChild(a);
 		    	        a.href = canvas.toDataURL();
-		    	        a.download = document.getElementById("iname").value," ", document.getElementById("ntitle");
+		    	        a.download = document.getElementById('iname').value + " " + document.getElementById('ntitle').value + ".png";
 		    	        a.click();
 		    	        document.body.removeChild(a);
 		    	}
