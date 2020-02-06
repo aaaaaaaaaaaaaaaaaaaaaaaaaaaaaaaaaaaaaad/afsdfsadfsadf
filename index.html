@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @font-face {font-family: Calibri; src: url(calibril.ttf);}
+        @font-face {font-family: Times New Roman; src: url(timesbd.tff);}
+    </style>
+</head>
+<body>
+    <form>
+     Name: <br><input id="iname" type="text" name="nname1"><br><br>
+     Title: <br><input id="ntitle" type="text" name="ntitle1"><br><br>
+     <input id="bTn1" type="button" name="btn" onclick="LImg();" value="Transparent">
+     <input id="bTn2" type="button" name="btn" onclick="WLImg();" value="White">
+     <input id="bTn3" type="button" name="btn" onclick="rVal();" value="Clear fields">
+     <input id="bTn4" type="button" name="btn" value="Save as">
+
+ </form>
+ <br> <br> <div style="border-style: solid; border-width: 5px; background-image: url(bg.png); width: 600px; height: 185px;">
+    <canvas id="canvas" width="600" height="185" style="text-align: center;"></canvas>
+    </div>
+    <script>
+        var cVas = document.getElementById('canvas');
+        var cuntext = cVas.getContext('2d');
+        var whiteBg = new Image(600, 185);
+        var theImg = new Image(600, 185);
+        // var dummyImg = new Image(600, 185);
+
+        function LImg() {
+            cuntext.clearRect(0, 0, canvas.width, canvas.height);
+            cuntext.drawImage(theImg, 0, 0);
+            cuntext.fillStyle = '#000';
+            cuntext.textAlign = "center"; 
+            cuntext.font = 'bold 17px Times New Roman';  
+            cuntext.fillText(document.getElementById('iname').value, 72, 115);
+            cuntext.textAlign = "center"; 
+            cuntext.font = '12px Calibri';
+            cuntext.fillText(document.getElementById('ntitle').value, 72, 128);
+        };
+        function WLImg() {
+            cuntext.clearRect(0, 0, canvas.width, canvas.height);
+            cuntext.drawImage(whiteBg, 0, 0);
+            cuntext.drawImage(theImg, 0, 0);
+            cuntext.fillStyle = '#000';
+            cuntext.textAlign = "center"; 
+            cuntext.font = 'bold 17px Times New Roman';
+            cuntext.fillText(document.getElementById('iname').value, 72, 115);
+            cuntext.textAlign = "center"; 
+            cuntext.font = '12px Calibri';
+            cuntext.fillText(document.getElementById('ntitle').value, 72, 128);
+        };
+        function rVal() {document.getElementById('iname').value = ""; document.getElementById('ntitle').value = "";} 
+
+		    const bTn4 = document.querySelector("#bTn4");
+		    const imgConv = document.querySelector("#imgConv");
+		    const canvas = document.querySelector("#canvas");
+		    const dataURI = canvas.toDataURL();
+		    bTn4.addEventListener("click", function() {
+		    	if(window.navigator.msSaveBlob) {
+		    		window.navigator.msSaveBlob(canvas.msToBlob(), "Canvas.png");
+		    	} else {
+		    	        const a = document.createElement("a");
+
+		    	        document.body.appendChild(a);
+		    	        a.href = canvas.toDataURL();
+		    	        a.download = document.getElementById("iname").value," ", document.getElementById("ntitle");
+		    	        a.click();
+		    	        document.body.removeChild(a);
+		    	}
+		    });
+		
+
+        theImg.src = 'tempL.png';
+        whiteBg.src = 'whiteBack.png'; 
+        // dummyImg.src = 'dummo2.png';
+
+    </script>
+</body>
+</html>
